@@ -11,21 +11,21 @@
 
 */
 
-@import url(../../_assets/Titillium.css);
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;400;700&display=swap');
 
 body {
-	font-family: 'TitilliumText22LThin', Helvetica, Arial, sans-serif;
+	font-family: 'Titillium Web', sans-serif;
 	padding:40px;
 	margin:0;
 	color:#3d1403;
 }
 h2, h3, h4, h5, h6 {
-	font-family: 'TitilliumText22LBold', Helvetica, Arial, sans-serif;
+	font-family: 'Titillium Web', sans-serif;
 	font-weight:normal;
 }
 h1 {
 	display:inline;
-	font:normal 2.5em/1.0em 'TitilliumText22LBold', Helvetica, Arial, sans-serif;
+	font:normal 2.5em/1.0em 'Titillium Web', sans-serif;
 	margin:0;
 	text-shadow:#DAE1F7 2px 2px 0, #DAE1F7 0 2px 0, #DAE1F7 -2px 2px 0, #DAE1F7 -2px 0 0, #DAE1F7 -2px -2px 0, #DAE1F7 0 -2px 0, #DAE1F7 2px -2px 0, #DAE1F7 2px -2px 0, #DAE1F7 2px 0 0;
 }
@@ -38,7 +38,7 @@ h2 {
 	text-shadow:none !important;	
 }
 h1 span, h4 span {
-	font-family: 'TitilliumText22LThin', Helvetica, Arial, sans-serif;
+	font-family: 'Titillium Web', sans-serif;
 	font-size:16px;
 	text-shadow:none;
 }
@@ -47,7 +47,7 @@ h1 span.version {
 	float:right;
 }
 strong {
-	font-family: 'TitilliumText22LBold', Helvetica, Arial, sans-serif;
+	font-family: 'Titillium Web', sans-serif;
 	font-weight:normal;
 }
 a {
@@ -61,11 +61,11 @@ a.search {
 	margin:10 10px;
 	cursor:pointer;
 	color:#ff7519;
-	background:url(../_images/search.png) 0 0;
+	background:url(../images/search.png) 0 0;
 }
 a.search:hover {
 	color:#4d63bc;
-	background:url(../_images/search.png) 0 15px;
+	background:url(../images/search.png) 0 15px;
 }
 a:hover {
 	background:#DAE1F7;
@@ -102,7 +102,7 @@ ol.tracklist li {
 	width:100%;
 	margin:0 0 4px 0; 
 	padding:10px;
-	background:url(../_images/grab_texture-4.gif);
+	background:url(../images/grab_texture-4.gif);
 	position:relative;
 }
 ol.printList {
@@ -110,7 +110,7 @@ ol.printList {
 	float:left;
 	color:#000;
 	margin:0;
-	font: 1.2em/1.2em 'TitilliumText22LBold', Helvetica, Arial, sans-serif;
+	font: 1.2em/1.2em 'Titillium Web', sans-serif;
 }
 ol.printList li {
 	width:100%;
@@ -124,7 +124,7 @@ ol.printList li:last-child {
 	border-bottom:none;
 }
 ol.printList li span.key {	
-	font:.8em/1em 'TitilliumText22LThin', Helvetica, Arial, sans-serif;
+	font:.8em/1em 'Titillium Web', sans-serif;
 	color:#999;
 	margin:0 20px;
 }
@@ -132,7 +132,7 @@ ol.tracklist .harmonic {
 	display:none;
 	text-align:center;
 	color:#4d63bc;
-	font:.8em/1em 'TitilliumText22LMedium', Helvetica, Arial, sans-serif;
+	font:.8em/1em 'Titillium Web', sans-serif;
 	text-shadow:#fff 2px 2px 0, #fff 0 2px 0, #fff -2px 2px 0, #fff -2px 0 0, #fff -2px -2px 0, #fff 0 -2px 0, #fff 2px -2px 0, #fff 2px -2px 0, #fff 2px 0 0;
 	position:absolute;
 	width:111px;
@@ -140,14 +140,14 @@ ol.tracklist .harmonic {
 	padding-top:10px;
 	bottom:-28px;
 	right:10%;
-	background:url(../_images/mix.gif) repeat-x;
+	background:url(../images/mix.gif) repeat-x;
 	z-index:10;
 }
 ol.printList .harmonic {
 	display:none;
 	text-align:left;
 	color:#999;
-	font:.8em/1em 'TitilliumText22LThin', Helvetica, Arial, sans-serif;
+	font:.8em/1em 'Titillium Web', sans-serif;
 	position:absolute;
 	width:120px;
 	height:25px;
@@ -189,7 +189,7 @@ ol.printList .harmonic span {
 	margin-bottom:20px;
 }
 .numHarmonic {
-	font: .9em/.9em 'TitilliumText22LBold', Helvetica, Arial, sans-serif;
+	font: .9em/.9em 'Titillium Web', sans-serif;
 	float:right;
 	padding:6px 15px;
 	margin:4px 0 4px 15px;
@@ -207,10 +207,10 @@ ol.printList .harmonic span {
 	overflow:hidden;
 }
 #help p, #help ul {
-	font: .9em/1.2em 'TitilliumText22LRegular', Helvetica, Arial, sans-serif;
+	font: .9em/1.2em 'Titillium Web', sans-serif;
 }
 #help p.large {
-	font: 1.1em/1.4em 'TitilliumText22LRegular', Helvetica, Arial, sans-serif;
+	font: 1.1em/1.4em 'Titillium Web', sans-serif;
 }
 
 /* COLUMNS
@@ -278,7 +278,7 @@ select {
 	padding:0;
 }
 .mixTitle {
-	font: 1.4em/1.4em 'TitilliumText22LThin', Helvetica, Arial, sans-serif;
+	font: 1.4em/1.4em 'Titillium Web', sans-serif;
 	width:50%;
 	margin-left:25px;
 	color:#3d1403;
@@ -290,7 +290,7 @@ select {
 }
 .track {
 	height:20px;
-	font: 1.1em/1.1em 'TitilliumText22LBold', Helvetica, Arial, sans-serif;
+	font: 1.1em/1.1em 'Titillium Web', sans-serif;
 	text-shadow:#fff 2px 2px 0, #fff 0 2px 0, #fff -2px 2px 0, #fff -2px 0 0, #fff -2px -2px 0, #fff 0 -2px 0, #fff 2px -2px 0, #fff 2px -2px 0, #fff 2px 0 0;
 	width:250px;
 	color:#3d1403;
@@ -303,7 +303,7 @@ select {
 .mixable {
 	width:295px;
 	height:20px;
-	font:.8em/1em 'TitilliumText22LMedium', Helvetica, Arial, sans-serif;
+	font:.8em/1em 'Titillium Web', sans-serif;
 	text-shadow:#fff 2px 2px 0, #fff 0 2px 0, #fff -2px 2px 0, #fff -2px 0 0, #fff -2px -2px 0, #fff 0 -2px 0, #fff 2px -2px 0, #fff 2px -2px 0, #fff 2px 0 0;
 	font-weight:normal;
 	color:#ff7519;
@@ -334,7 +334,7 @@ button {
 	display:block;
 	margin:4px 1px;
 	cursor:pointer;
-	font:normal 14px/18px 'TitilliumText22LBold', Helvetica, Arial, sans-serif;
+	font:normal 14px/18px 'Titillium Web', sans-serif;
 	text-align:center;
 	border:none;
 	-webkit-border-radius:4px;
