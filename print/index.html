@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<title>Print</title>
+
+<link rel="stylesheet" type="text/css" href="../_assets/style.css">
+
+<link rel="apple-touch-icon" sizes="72x72" href="../_images/touch-icon-ipad.png" />
+<link rel="apple-touch-startup-image" href="../_images/startup.png">
+
+<script type="text/javascript" src="../_assets/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="../_assets/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="../_assets/mixtool.js"></script>
+<script type="text/javascript">
+
+$(function() {
+	
+	readKeyPref(); 
+	
+	var sQS = document.location.href;
+	var iLoc = sQS.indexOf('?');
+	
+	sQS = sQS.substr(iLoc);
+	
+	var aValKey = sQS.split('=');
+	
+	var mixToken = aValKey[1];
+	
+	var name = "mixtool."+mixToken;
+	var ca = document.cookie.split(';');
+	
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(name) == 0) {
+					
+			var eqIndex = c.indexOf("=");
+			var contents = c.substring((eqIndex+1),c.length);
+			contents = contents.split(',');
+				
+			var title = unescape(contents[0]);
+			$('h1.print').html(title);
+			$('title').html(title);
+			
+			$(contents).each(function(j) {
+				
+				var keyNames = ((keyMode == 1) ? traditionalKeys.concat() : camelotKeys.concat());
+				
+				if (j > 0) {
+					$('ol').append('<li></li>');
+					var trackInfo = contents[j].split('\\');
+					var track = trackInfo[0] + " <span class=\"key\">" + keyNames[trackInfo[1]] + "</span><input type=\"hidden\" name=\"key\" value=\""+ trackInfo[1] +"\"><div class=\"harmonic\"></div>";
+					$('li').eq(j-1).html(track);
+				}
+				
+			});
+		}
+	}
+	detectHarmonic('print');
+});
+
+</script>
+
+</head>
+<body>
+<div class="sectionPrint">
+	<h1 class="print"></h1><div class="numHarmonic"></div>
+</div>
+<div class="sectionPrint">
+	<ol class="printList"></ol>
+</div>
+<h4 class="print">Mixtool &bull; <span>http://inorganik.net/mixtool/</span></h4>
+</body>
+</html>

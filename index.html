@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+
+<meta name="robots" content="index,follow">
+<meta name="viewport" content="width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="description" content="A tool for DJs that automatically arranges tracks for the most harmonic mixes. By inorganik" />
+
+<title>Mixtool</title>
+
+<link rel="stylesheet" type="text/css" href="_assets/style.css">
+
+<script type="text/javascript" src="_assets/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="_assets/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="_assets/mixtool.js"></script>
+<script type="text/javascript">
+
+$(function() {
+	
+	readKeyPref();
+	
+	trackli = $('ol.tracklist li.firstItem').html();
+	
+	$('ol.tracklist').sortable({
+		stop: function() {
+			detectHarmonic(0);
+		}
+	});
+	
+	$('a.addTrack').live('click', addTrack);
+	$('a.removeTrack').live('click', removeTrack);
+	$('a.search').live('click', searchTrack);
+	$('select').live('change', selectKey);
+	$('button.mix').live('click', activeMix);
+	
+	$('#help').hide();
+
+	loadAll();
+
+});
+
+var _gaq=[['_setAccount','UA-7742845-1'],['_trackPageview']];
+(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+s.parentNode.insertBefore(g,s)}(document,'script'));
+
+</script>
+
+</head>
+<body>
+<div id="top"></div>
+<div id="right"></div>
+<div id="bottom"></div>
+<div id="left"></div>
+<div class="topSection">
+	<h1>Mixtool <span>Auto-arrange tracks to mix harmonically. <a href="http://twitter.com/inorganik">By inorganik</a></span> <span class="version">beta v 0.3</span></h1>
+</div>
+<div class="section">
+	<button class="function" onClick="reOrderTracks()">Sort to mix in key</button>
+    <button class="function" onClick="reverseTracks()">Reverse order</button>
+    <button class="function" onClick="randomize()">Randomize</button>
+    <button class="camKeys" onClick="setKeyPref(0)">Camelot keys</button>
+    <button class="tradKeys" onClick="setKeyPref(1)">Traditional keys</button>
+    <button class="file" onClick="help()">Help</button>
+    <button class="file" onClick="newMix()">New</button>
+    <button class="file" onClick="printMix()">Print</button>
+    <button class="file" onClick="copy()">Copy</button>
+    <button class="file" onClick="save(true)">Save</button>
+</div>
+<div id="firstVisit" class="section">
+	<h2>Welcome. To get started, add tracks below. Click the + for additional tracks. Don&rsquo;t know the key? Check Beatport with the search button. <a href="#" onClick="help()">Visit the help section</a> for more help.</h2>
+    <button class="file" onClick="hideWelcome()">Okay</button>
+</div>
+<div id="help" class="section">
+	<div class="col">
+    	<div class="col_inner">
+            <p class="large">If you&rsquo;re familiar with mixing in key, then you know the challenge is to figure out how to arrange your tracks to have harmonic mixes. That&rsquo;s what Mixtool does. Just click "<strong>Sort to mix in key</strong>", and it will optimize your mix for the most harmonic mixes. You can then drag and drop tracks to reorder them, since there are other considerations besides harmony in mixing. Mixtool automatically detects and displays where harmonic mixes are. </p>
+            <p class="large">Save a mix, and a button will appear for it at the top. If you want to revert back to the last time you saved, click the mix button. (Mixes are saved in cookies, so they will only be available on the browser you save them on.)</p>
+    	</div>
+    </div>
+    <div class="col twoThirds">
+    	<div class="col_inner">
+        	<h3>How do I find the key</h3>
+            <p>Finding the key of a track is easy if it&rsquo;s on Beatport- click the search button by the track name and a new window will open with a Beatport search for your track, you&rsquo;ll find the key there. Otherwise, you could use a key-detection software like <a href="http://www.mixedinkey.com/" title="Mixed-In-Key">Mixed-In-Key</a>. As of yet, no site with an adequate catalogue of electronic music has an API for accessing the key of a track.</p>
+        	<h3>Harmonic mixing</h3>
+            <p>Mixtool uses the <a href="http://en.wikipedia.org/wiki/Circle_of_fifths" title="Circle of fifths on Wikipedia">circle of fifths</a> to find tracks that will mix in key with the key of the track you enter. For each key, there are four keys that will mix harmonically. Those keys are displayed to the right of the key pullodown menu on each track. When harmonic mixes are displayed, you will see the type of harmonic mix: same key, key up, key down, or major-minor.</p>
+        </div>
+    </div>
+    <div class="col third">
+    	<div class="col_inner">
+        	<h3>Enharmonically equivalent keys</h3>
+            <ul>
+                <li>A &#9839; major &emsp;=&emsp; B &#9837; major</li>
+                <li>a &#9839; minor &emsp;=&emsp; b &#9837; minor</li>
+                <li>C &#9839; major &emsp;=&emsp; D &#9837; major</li>
+                <li>C &#9837; major &emsp;=&emsp; B major</li>
+                <li>c &#9839; minor &emsp;=&emsp; d &#9837; minor</li>
+                <li>d &#9839; minor &emsp;=&emsp; e &#9837; minor</li>
+                <li>F &#9837; major &emsp;=&emsp; E major</li>
+                <li>e &#9839; minor &emsp;=&emsp; f minor</li>
+                <li>G &#9837; major &emsp;=&emsp; F &#9839; major</li>
+                <li>g &#9839; minor &emsp;=&emsp; a &#9837; minor</li>
+            </ul>
+    		<button class="file" onClick="help()">Okay</button>
+        </div>
+    </div>
+</div>
+<div id="mixes" class="section"></div>
+<form class="mixTitleForm">
+    <input type="text" class="input mixTitle" name="mixTitle" placeholder="Mix title" value="">
+    <button type="submit" class="hidden" name="hiddenSave" onClick="save(false)"></button>
+    <span class="numHarmonic"></span>
+</form>
+<ol class="tracklist">
+	<li class="firstItem">
+        <a class="trackCount addTrack" title="Add a track after this">+</a>
+        <a class="trackCount removeTrack" title="Remove this track">&ndash;</a>
+        <form class="trackForm" action="">
+            <input type="text" class="input track" name="track" placeholder="Track - Artist" value="">
+            <a class="search" title="Search this track on Beatport"></a>
+            <select class="select" name="key" title="Select the track key">
+                <option value="" selected="selected">Key</option>
+            </select>
+            <input type="text" disabled="disabled" class="input mixable" name="mixable" value="">
+        </form>
+        <div class="harmonic"></div>
+    </li>
+</ol>
+</body>
+</html>
