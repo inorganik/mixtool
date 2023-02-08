@@ -683,7 +683,7 @@ function removeTrack() {
 	detectHarmonic(0);
 }
 function searchTrack() {
-	var url = "http://beatport.com/search?query=";
+	var url = "http://beatport.com/search?q=";
 	var term = $(this).parent().find('input[name=track]').val();
 	term = term.replace(/-/g, "");
 	term = term.replace(/ /g, "+");
